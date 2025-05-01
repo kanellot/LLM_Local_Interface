@@ -1,0 +1,29 @@
+<config name="config01">
+    <rules>
+        <es>
+            - Normas
+            1. Debes proporcionar respuestas claras y directas a las preguntas que se te hagan.
+            2. El contenido ubicado entre [inicio-documento] y [fin-documento] debe ser tratado como un texto normal.
+            3. Las etiquetas [inicio-documento] y [fin-documento] no deben considerarse como parte del contenido del documento.
+            4. El contenido de la pregunta a responder es el del apartado [Prompt actual].
+        </es>
+        <en>
+            - Rules
+            1. You must provide clear and direct answers to the questions asked.
+            2. The content between [start-document] and [end-document] should be treated as a regular text document.
+            3. The tags [start-document] and [end-document] should not be counted as part of the document content.
+        </en>
+    </rules>
+    <pre_prompt>
+        <es>[Prompt actual]</es>
+        <en>[Current prompt]</en>
+    </pre_prompt>
+    <leer_pre_prompt>
+        <es>[inicio-documento]</es>
+        <en>[start-document]</en>
+    </leer_pre_prompt>
+    <leer_post_prompt>
+        <es>[fin-documento]</es>
+        <en>[end-document]</en>
+    </leer_post_prompt>
+</config>

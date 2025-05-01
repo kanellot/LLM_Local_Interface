@@ -15,7 +15,7 @@ class CommandParser:
         # TODO: Interpretar y ejecutar comands como /leer o /listar
         if command.startswith("/leer "):
             path = command.replace("/leer ", "").strip()
-            return  Config.LEER_PRE_PROMPT + self.fm.read_file(path) + Config.LEER_POST_PROMPT
+            return  '\n'+Config.LEER_PRE_PROMPT +'\n'+ self.fm.read_file(path) + '\n'+Config.LEER_POST_PROMPT
         elif command.startswith("/listar "):
             path = command.replace("/listar ", "").strip()
             return self.fm.list_directory(path)
@@ -27,5 +27,5 @@ class CommandParser:
         for cmd in matches:
             result = self.execute_command(cmd)
             text = text.replace(f"({cmd})", result)
-        return Config.PRE_PROMPT+text+Config.POST_PROMPT
+        return Config.RULES+'\n'+Config.PRE_PROMPT+'\n'+text
 
