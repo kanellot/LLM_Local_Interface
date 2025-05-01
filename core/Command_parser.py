@@ -1,4 +1,5 @@
 import re
+from app.Config import Config
 from core.File_manager import FileManager
 
 class CommandParser:
@@ -14,7 +15,7 @@ class CommandParser:
         # TODO: Interpretar y ejecutar comands como /leer o /listar
         if command.startswith("/leer "):
             path = command.replace("/leer ", "").strip()
-            return self.fm.read_file(path)
+            return  Config.LEER_PRE_PROMPT + self.fm.read_file(path) + Config.LEER_POST_PROMPT
         elif command.startswith("/listar "):
             path = command.replace("/listar ", "").strip()
             return self.fm.list_directory(path)
