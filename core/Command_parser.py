@@ -11,7 +11,7 @@ class CommandParser:
         return self.pattern.findall(text)
 
     def execute_command(self, command: str) -> str:
-        # TODO: Interpretar y ejecutar comandos como /leer o /listar
+        # TODO: Interpretar y ejecutar comands como /leer o /listar
         if command.startswith("/leer "):
             path = command.replace("/leer ", "").strip()
             return self.fm.read_file(path)
