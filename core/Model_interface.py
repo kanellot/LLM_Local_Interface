@@ -18,7 +18,6 @@ class ModelInterface:
     def prompt(self, text: str) -> str:
         # TODO: Enviar texto al modelo y devolver respuesta como string
         if self.model:
-            Config.PRE_PROMPT + text + Config.POST_PROMPT
             response = self.model(text, max_tokens=Config.MAX_TOKENS)
             return response['choices'][0]['text'].strip()
         return "❌ Modelo no inicializado."

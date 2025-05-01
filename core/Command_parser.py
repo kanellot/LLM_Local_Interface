@@ -27,4 +27,5 @@ class CommandParser:
         for cmd in matches:
             result = self.execute_command(cmd)
             text = text.replace(f"({cmd})", result)
-        return text
+        return Config.PRE_PROMPT+text+Config.POST_PROMPT
+
