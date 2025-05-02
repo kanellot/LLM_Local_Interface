@@ -7,25 +7,25 @@ class CommandParser:
         self.fm = file_manager
         self.pattern = re.compile(r'\((.*?)\)')
 
+    # Extract command from prompt
     def extract_commands(self, text: str) -> list[str]:
-        # TODO: Devolver lista de comandos encontrados
         return self.pattern.findall(text)
 
+    # Execute command and return the result
     def execute_command(self, command: str) -> str:
-        # TODO: Interpretar y ejecutar comands como /leer o /lista
         if command.startswith("/leer "):
             path = command.replace("/leer ", "").strip()
-            return  '\n'+Config.LEER_PRE_PROMPT +'\n'+ self.fm.read_file(path) + '\n'+Config.LEER_POST_PROMPT
+            return  '\n'+Config.prompt_config.get("leer_pre_prompt") +'\n'+ self.fm.read_file(path) + '\n'+Config.prompt_config.get("leer_post_prompt")
         elif command.startswith("/listar "):
             path = command.replace("/listar ", "").strip()
             return self.fm.list_directory(path)
         return f"❌ Comando no reconocido: {command}"
 
+    # Replace every command with the result
     def process_text(self, text: str) -> str:
-        # TODO: Reemplazar comandos en el texto por sus resultados
         matches = self.extract_commands(text)
         for cmd in matches:
             result = self.execute_command(cmd)
             text = text.replace(f"({cmd})", result)
-        return Config.RULES+'\n'+Config.PRE_PROMPT+'\n'+text
+        return Config.prompt_config.get("rules")+'\n'+Config.prompt_config.get("pre_prompt")+'\n'+text
 

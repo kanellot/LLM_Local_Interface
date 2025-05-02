@@ -1,30 +1,22 @@
 from app.XMLPromptLoader import XMLPromptLoader
 
-
 class Config:
-    #LARGE LANGUAGE MODEL CONFIG
-    MODEL_PATH = r"C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-4B-it-qat-GGUF\gemma-3-4B-it-QAT-Q4_0.gguf"
-    USE_CUDA = True
-    ENABLE_MODEL = True
-    MAX_TOKENS = 512
-    MAX_FILE_CHARS = 3000
 
-    #PROMPT CONFIG
-    PROMPT_LANGUAGE = "es"  # Cambia a "en" o "es"
-    PROMPT_CONFIG_PATH = "configs\\config01.xml"
+    #APP CONGIG
+    APP_CONFIG_PATH= "configs\\app_config.xml"
+    PROMPT_CONFIG_PATH = "configs\\prompt_config01.xml"
+    PROMPT_LANGUAGE = "en"  # Cambia a "en" o "es"
 
-    loader = XMLPromptLoader(PROMPT_CONFIG_PATH, PROMPT_LANGUAGE)
+    # LOAD APP & MODEL CONFIG
+    loader = XMLPromptLoader()
+    app_config, model_config = loader.load_app_config(APP_CONFIG_PATH)
 
-    RULES = loader.rules
-    PRE_PROMPT = loader.pre_prompt
-    LEER_PRE_PROMPT = loader.leer_pre_prompt
-    LEER_POST_PROMPT = loader.leer_post_prompt
+    # LOAD PROMPT CONFIG
+    loader = XMLPromptLoader(lang=PROMPT_LANGUAGE)
+    prompt_config = loader.load_prompt_config(PROMPT_CONFIG_PATH, PROMPT_LANGUAGE)
 
+    # UPDATE PROMPT CONFIG (LANGUAGE)
     @classmethod
-    def update_language(cls, lang: str):
-        cls.loader = XMLPromptLoader(cls.PROMPT_CONFIG_PATH, lang)
-        cls.RULES = cls.loader.rules
-        cls.PRE_PROMPT = cls.loader.pre_prompt
-        cls.LEER_PRE_PROMPT = cls.loader.leer_pre_prompt
-        cls.LEER_POST_PROMPT = cls.loader.leer_post_prompt
-        cls.PROMPT_LANGUAGE = lang
+    def update_language(cls, lang: str, path: str):
+        loader = XMLPromptLoader(lang=lang)
+        prompt_config = loader.load_prompt_config(path, lang)

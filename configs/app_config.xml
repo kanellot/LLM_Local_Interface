@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app_config>
+    <app>
+        <language>"es"</language>
+        <prompt_config_path>"configs\prompt_config01.xml"</prompt_config_path>
+    </app>
+    <model>
+        <MODEL_PATH>r"C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-4B-it-qat-GGUF\gemma-3-4B-it-QAT-Q4_0.gguf"</MODEL_PATH>
+        <USE_CUDA>False</USE_CUDA>
+        <ENABLE_MODEL>True</ENABLE_MODEL>
+        <MAX_TOKENS>512</MAX_TOKENS>
+        <MAX_FILE_CHARS>3000</MAX_FILE_CHARS>
+    </model>
+</app_config>
