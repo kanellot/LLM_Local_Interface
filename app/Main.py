@@ -3,7 +3,7 @@ from core.Command_parser import CommandParser
 from core.File_manager import FileManager
 
 def main():
-    print("🟢 Iniciando aplicación...")
+    print("🟢 Iniciando aplicación..")
     model = ModelInterface()
     file_manager = FileManager()
     parser = CommandParser(file_manager)
