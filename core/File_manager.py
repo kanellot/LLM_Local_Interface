@@ -1,4 +1,6 @@
 import os
+from app.ErrorHandler import ErrorHandler
+
 
 class FileManager:
     """
@@ -20,7 +22,7 @@ class FileManager:
             with open(path, 'r', encoding='utf-8') as f:
                 return f.read()[:3000]
         except Exception as e:
-            return f"❌ Error leyendo archivo: {e}"
+            return ErrorHandler.format("FILE_READ_ERROR", error=str(e))
 
     def list_directory(self, path: str) -> str:
         """
@@ -38,4 +40,4 @@ class FileManager:
                 return f"[Directorio: {os.path.basename(path)}]({', '.join(files)})"
             return "No hay archivos en el directorio."
         except Exception as e:
-            return f"❌ Error listando archivos: {e}"
+            return ErrorHandler.format("DIR_LIST_ERROR", error=str(e))

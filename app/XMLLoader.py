@@ -1,5 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
+
+from app.ErrorHandler import ErrorHandler
 from app.Xml_Index_Constants import XMLIndexConstants
 
 class XMLLoader:
@@ -50,7 +52,7 @@ class XMLLoader:
             return app_config_dict, model_config_dict
 
         except Exception as e:
-            raise RuntimeError(f"❌ App Configuration Load Failed: {e}")
+            raise RuntimeError(ErrorHandler.format("CONFIG_LOAD_ERROR", error=str(e)))
 
     def load_prompt_config(self, prompt_xml_path: str, lang: str) -> dict:
         """
@@ -83,8 +85,7 @@ class XMLLoader:
             return prompt_config_dict
 
         except Exception as e:
-            print(f"❌ Error loading prompt configuration: {e}")
-            return {}
+            raise RuntimeError(ErrorHandler.format("CONFIG_LOAD_ERROR", error=str(e)))
 
     def _get_text(self, node: ET.Element, tag: str) -> str:
         """
