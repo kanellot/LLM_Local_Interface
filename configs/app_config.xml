@@ -5,7 +5,7 @@
         <prompt_config_path>configs\prompt_config01.xml</prompt_config_path>
     </app>
     <model>
-        <MODEL_PATH>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-4B-it-qat-GGUF\gemma-3-4B-it-QAT-Q4_0.gguf</MODEL_PATH>
+        <MODEL_PATH>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-12B-it-qat-GGUF\gemma-3-12B-it-QAT-Q4_0.gguf</MODEL_PATH>
         <USE_CUDA>False</USE_CUDA>
         <ENABLE_MODEL>True</ENABLE_MODEL>
         <MAX_TOKENS>512</MAX_TOKENS>
