@@ -1,12 +1,12 @@
 import re
 from app.Config import Config
 from core.File_manager import FileManager
-
+from app.Xml_Index_Constants import XMLIndexConstants
 class CommandParser:
     def __init__(self, file_manager: FileManager):
         self.fm = file_manager
         self.pattern = re.compile(r'\((.*?)\)')
-
+        self.c = XMLIndexConstants()
     # Extract command from prompt
     def extract_commands(self, text: str) -> list[str]:
         return self.pattern.findall(text)
@@ -15,7 +15,7 @@ class CommandParser:
     def execute_command(self, command: str) -> str:
         if command.startswith("/leer "):
             path = command.replace("/leer ", "").strip()
-            return  '\n'+Config.prompt_config.get(Config.LEER_PRE_PROMPT) +'\n'+ self.fm.read_file(path) + '\n'+Config.prompt_config.get(Config.LEER_POST_PROMPT)
+            return  '\n'+Config.prompt_config.get(self.c.LEER_PRE_PROMPT) +'\n'+ self.fm.read_file(path) + '\n'+Config.prompt_config.get(self.c.LEER_POST_PROMPT)
         elif command.startswith("/listar "):
             path = command.replace("/listar ", "").strip()
             return self.fm.list_directory(path)
@@ -27,5 +27,5 @@ class CommandParser:
         for cmd in matches:
             result = self.execute_command(cmd)
             text = text.replace(f"({cmd})", result)
-        return Config.prompt_config.get(Config.RULES)+'\n'+Config.prompt_config.get(Config.PRE_PROMPT)+'\n'+text
+        return Config.prompt_config.get(self.c.RULES)+'\n'+Config.prompt_config.get(self.c.PRE_PROMPT)+'\n'+text
 

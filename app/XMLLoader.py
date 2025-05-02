@@ -1,5 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
+from app.Xml_Index_Constants import XMLIndexConstants
 
 class XMLLoader:
     def __init__(self, lang: str = "es"):
@@ -9,6 +10,8 @@ class XMLLoader:
         self.pre_prompt = ""
         self.leer_pre_prompt = ""
         self.leer_post_prompt = ""
+        self.c = XMLIndexConstants()
+
 
     # LOAD app_config.xml
     def load_app_config(self, config_xml_path: str):
@@ -21,14 +24,14 @@ class XMLLoader:
             app_config_dict = {}
             app_config = root.find("app")
             if app_config is not None:
-                app_config_dict["language"] = app_config.find("language").text
-                app_config_dict["prompt_config_path"] = app_config.find("prompt_config_path").text
+                app_config_dict[self.c.LANGUAGE] = app_config.find(self.c.LANGUAGE).text
+                app_config_dict[self.c.PROMPT_CONFIG_PATH] = app_config.find(self.c.PROMPT_CONFIG_PATH).text
 
             # Load model config values
             model_config_dict = {}
             model_config = root.find("model")
             if model_config is not None:
-                fields = ["MODEL_PATH", "USE_CUDA", "ENABLE_MODEL", "MAX_TOKENS", "MAX_FILE_CHARS"]
+                fields = self.c.MODEL_STR
                 for field in fields:
                     tag = model_config.find(field)
                     if tag is not None:
@@ -48,12 +51,10 @@ class XMLLoader:
             tree = ET.parse(full_path)
             prompt_config = tree.getroot()
             prompt_config_dict = {}
-
+            # LOAD PROMPT CONFIG
             if lang not in {"es", "en"}:
                 raise ValueError(f"Idioma no soportado: '{lang}'. Usa 'es' o 'en'.")
-
-            fields = ["rules", "pre_prompt", "leer_pre_prompt", "leer_post_prompt"]
-
+            fields = self.c.PROMPT_STR
             for field_name in fields:
                 field_node = prompt_config.find(field_name)
                 if field_node is not None:
