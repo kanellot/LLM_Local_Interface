@@ -15,7 +15,7 @@ class CommandParser:
     def execute_command(self, command: str) -> str:
         if command.startswith("/leer "):
             path = command.replace("/leer ", "").strip()
-            return  '\n'+Config.prompt_config.get("leer_pre_prompt") +'\n'+ self.fm.read_file(path) + '\n'+Config.prompt_config.get("leer_post_prompt")
+            return  '\n'+Config.prompt_config.get(Config.LEER_PRE_PROMPT) +'\n'+ self.fm.read_file(path) + '\n'+Config.prompt_config.get(Config.LEER_POST_PROMPT)
         elif command.startswith("/listar "):
             path = command.replace("/listar ", "").strip()
             return self.fm.list_directory(path)
@@ -27,5 +27,5 @@ class CommandParser:
         for cmd in matches:
             result = self.execute_command(cmd)
             text = text.replace(f"({cmd})", result)
-        return Config.prompt_config.get("rules")+'\n'+Config.prompt_config.get("pre_prompt")+'\n'+text
+        return Config.prompt_config.get(Config.RULES)+'\n'+Config.prompt_config.get(Config.PRE_PROMPT)+'\n'+text
 

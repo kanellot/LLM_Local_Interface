@@ -1,15 +1,17 @@
+from app.Config import Config
 from core.Model_interface import ModelInterface
 from core.Command_parser import CommandParser
 from core.File_manager import FileManager
 
 def main():
     print("🟢 Iniciando aplicación..")
+    config = Config()
     model = ModelInterface()
     file_manager = FileManager()
     parser = CommandParser(file_manager)
-
+    #print("m")
     while True:
-        entrada = input("🟢 <Tú: ")
+        entrada = input('\n'+"🟢 <Tú: ")
         if entrada.startswith("/salir"):
             break
 

@@ -2,7 +2,6 @@ import os
 
 class FileManager:
     def read_file(self, path: str) -> str:
-        # TODO: Leer archivo desde el sistema y retornar contenido limitado
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 return f.read()[:3000]
@@ -10,7 +9,6 @@ class FileManager:
             return f"❌ Error leyendo archivo: {e}"
 
     def list_directory(self, path: str) -> str:
-        # TODO: Listar archivos en un directorio dado
         try:
             files = os.listdir(path)
             if files:

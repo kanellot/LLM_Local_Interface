@@ -5,19 +5,18 @@ from app.Config import Config
 class ModelInterface:
     def __init__(self):
         self.model = None
-        if Config.model_config.get("ENABLE_MODEL"):
+        if Config.model_config.get(Config.ENABLE_MODEL):
             self.model = self.load_model()
 
     def load_model(self):
-        # TODO: Inicializar Llama con configuración según CUDA u opción CPU
-        if Config.model_config.get("USE_CUDA"):
-            return Llama(model_path=os.path.normpath(Config.model_config.get("MODEL_PATH")), n_ctx=4096, n_gpu_layers=1000, GPUverbose=True)
+        path = (Config.model_config.get(Config.MODEL_PATH).strip('"'))
+        if Config.model_config.get(Config.USE_CUDA):
+            return Llama(model_path=os.path.normpath(path), n_ctx=4096, n_gpu_layers=1000, GPUverbose=True)
         else:
-            return Llama(model_path=os.path.normpath(Config.model_config.get("MODEL_PATH")), n_ctx=4096, verbose=True)
+            return Llama(model_path=os.path.normpath(path), n_ctx=4096, verbose=True)
 
     def prompt(self, text: str) -> str:
-        # TODO: Enviar texto al modelo y devolver respuesta como string
         if self.model:
-            response = self.model(text, max_tokens=Config.model_config.get("MAX_TOKENS"))
+            response = self.model(text, max_tokens=int(Config.model_config.get(Config.MAX_TOKENS)))
             return response['choices'][0]['text'].strip()
         return "❌ Modelo no inicializado."
