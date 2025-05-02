@@ -1,7 +1,3 @@
-# app/ErrorMessages.py
-
-from app.Xml_Index_Constants import XMLIndexConstants
-
 class ErrorMessages:
     MESSAGES = {
         'es': {

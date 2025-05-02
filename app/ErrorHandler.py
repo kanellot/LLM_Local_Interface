@@ -1,6 +1,7 @@
 # app/ErrorHandler.py
 from app.ErrorMessages import ErrorMessages
 
+
 class ErrorHandler:
     current_language = 'es'  # valor por defecto
 

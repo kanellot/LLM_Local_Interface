@@ -1,23 +1,16 @@
 from app.Config import Config
-from core.Model_interface import ModelInterface
 from core.Command_parser import CommandParser
 from core.File_manager import FileManager
+from core.Model_interface import ModelInterface
+
 
 def main():
-    """
-    Punto de entrada principal para la aplicación de línea de comandos.
-
-    - Inicializa la configuración, el modelo de lenguaje, el gestor de archivos y el parser de comandos.
-    - Inicia un bucle interactivo donde el usuario puede introducir texto o comandos.
-    - Procesa el texto del usuario, lo envía al modelo, y muestra la respuesta.
-    - Usa '/salir' para terminar la ejecución.
-    """
     print("🟢 Iniciando aplicación..")
 
-    config = Config()  # Carga la configuración al iniciar
-    model = ModelInterface()  # Inicializa la interfaz del modelo (e.g. OpenAI API, LLM local)
-    file_manager = FileManager()  # Gestor de archivos
-    parser = CommandParser(file_manager)  # Parser que puede interpretar comandos especiales
+    config = Config()
+    model = ModelInterface(config.model_config, config.constants)
+    file_manager = FileManager()
+    parser = CommandParser(file_manager, config.prompt_config, config.constants)
 
     while True:
         entrada = input('\n🟢 <Tú: ')
@@ -30,6 +23,7 @@ def main():
 
         respuesta = model.prompt(entrada_procesada)
         print(f"🤖 Modelo> {respuesta}\n")
+
 
 if __name__ == "__main__":
     """
