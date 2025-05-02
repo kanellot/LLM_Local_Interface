@@ -1,7 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 
-class XMLPromptLoader:
+class XMLLoader:
     def __init__(self, lang: str = "es"):
         self.lang = lang
         self.app_config = {}
