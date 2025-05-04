@@ -6,11 +6,12 @@ from core.File_manager import FileManager
 
 class CommandParser:
 
-    def __init__(self, file_manager: FileManager, prompt_config: dict, constants: XMLIndexConstants):
+    def __init__(self, file_manager: FileManager, prompt_config: dict, mm):
 
         self.fm = file_manager
-        self.prompt_config = prompt_config
-        self.constants = constants
+        self.prompt_config = prompt_config["prompt_config"]
+        self.constants = prompt_config["idx"]
+        self.mm = mm
         self.pattern = re.compile(r'\((.*?)\)')  # Comandos entre paréntesis
 
     def extract_commands(self, text: str) -> list[str]:
@@ -23,9 +24,9 @@ class CommandParser:
             path = command.replace("/leer ", "").strip()
             return (
                     '\n' +
-                    self.prompt_config.get(self.constants.LEER_PRE_PROMPT) + '\n' +
+                    self.prompt_config.get(self.constants["LEER_PRE_PROMPT"]) + '\n' +
                     self.fm.read_file(path) + '\n' +
-                    self.prompt_config.get(self.constants.LEER_POST_PROMPT)
+                    self.prompt_config.get(self.constants["LEER_POST_PROMPT"])
             )
         elif command.startswith("/listar "):
             path = command.replace("/listar ", "").strip()
@@ -40,7 +41,7 @@ class CommandParser:
             text = text.replace(f"({cmd})", result)
 
         return (
-                self.prompt_config.get(self.constants.RULES) + '\n' +
-                self.prompt_config.get(self.constants.PRE_PROMPT) + '\n' +
+                self.prompt_config.get(self.constants["RULES"]) + '\n' +
+                self.prompt_config.get(self.constants["PRE_PROMPT"]) + '\n' +
                 text
         )

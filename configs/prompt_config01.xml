@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config name="prompt_config01">
+<prompt_config>
     <rules>
         <es>
             - Normas
@@ -27,4 +27,4 @@
         <es>[fin-documento]</es>
         <en>[end-document]</en>
     </leer_post_prompt>
-</config>
+</prompt_config>

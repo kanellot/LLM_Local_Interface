@@ -21,12 +21,18 @@ class XMLIndexConstants:
         "LEER_POST_PROMPT": "leer_post_prompt"
     }
 
-    app_messages_conf_keys = {
+    app_info_conf_keys = {
         "APP_START": "app_start",
+        "CONFIG_LOAD_PASS": "config_pass",
+        "CONFIG_LOAD_LANG_PASS": "config_lang_pass"
+    }
+
+    app_error_conf_keys = {
         "CONFIG_NAME_ERROR": "config_error",
         "CONFIG_LOAD_ERROR": "config_load",
-        "CONFIG_LOAD_PASS": "config_pass",
         "CONFIG_LOAD_LANG_ERROR": "config_lang_error",
-        "CONFIG_LOAD_LANG_PASS": "config_lang_pass"
+        "MODEL_LOAD_ERROR": "model_load_error",
+        "FILE_LOAD_ERROR": "file_load_error",
+        "EMPTY_FOLDER_ERROR": "empty_folder_error",
     }
 

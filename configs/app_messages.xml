@@ -1,26 +1,42 @@
 <messages>
-    <APP_START>
-        <es>🟢 Iniciando aplicación..</es>
-        <en>🟢 Starting the application..</en>
-    </APP_START>
-    <CONFIG_NAME_ERROR>
-        <es>No se encontró ninguna configuración con nombre</es>
-        <en>No configuration found with the specified name</en>
-    </CONFIG_NAME_ERROR>
-    <CONFIG_LOAD_ERROR>
-        <es>Error al cargar la configuración</es>
-        <en>Error loading configuration</en>
-    </CONFIG_LOAD_ERROR>
-    <CONFIG_LOAD_PASS>
-        <es>✅ Configuración cargada correctamente.</es>
-        <en>✅ Configuration loaded successfully.</en>
-    </CONFIG_LOAD_PASS>
-    <CONFIG_LOAD_LANG_ERROR>
-        <es>Error al cargar la configuración para idioma: </es>
-        <en>Error loading configuration for language: </en>
-    </CONFIG_LOAD_LANG_ERROR>
-    <CONFIG_LOAD_LANG_PASS>
-        <es>✅ Configuración cargada correctamente para idioma: </es>
-        <en>✅ Configuration loaded successfully for language: </en>
-    </CONFIG_LOAD_LANG_PASS>
+    <info>
+        <app_start>
+            <es>🟢 Iniciando aplicación..</es>
+            <en>🟢 Starting the application..</en>
+        </app_start>
+        <config_load_pass>
+            <es>✅ Configuración cargada correctamente.</es>
+            <en>✅ Configuration loaded successfully.</en>
+        </config_load_pass>
+        <config_load_lang_pass>
+            <es>✅ Configuración cargada correctamente para idioma: </es>
+            <en>✅ Configuration loaded successfully for language: </en>
+        </config_load_lang_pass>
+    </info>
+    <error>
+        <config_name_error>
+            <es>❌ No se encontró ninguna configuración con nombre</es>
+            <en>❌ No configuration found with the specified name</en>
+        </config_name_error>
+        <config_load_error>
+            <es>❌ Error al cargar la configuración</es>
+            <en>❌ Error loading configuration</en>
+        </config_load_error>
+        <config_load_lang_error>
+            <es>❌ Error al cargar la configuración para idioma: </es>
+            <en>❌ Error loading configuration for language: </en>
+        </config_load_lang_error>
+        <model_load_error>
+            <es>❌ Error al cargar el LLM</es>
+            <en>❌ Error loading LLM</en>
+        </model_load_error>
+        <file_load_error>
+            <es>Error al cargar el archivo </es>
+            <en>u</en>
+        </file_load_error>
+        <empty_folder_error>
+            <es>Este directorio esta vacio</es>
+            <en>u</en>
+        </empty_folder_error>
+    </error>
 </messages>
