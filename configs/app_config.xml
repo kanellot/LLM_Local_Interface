@@ -6,10 +6,10 @@
         <app_messages_path>configs\app_messages.xml</app_messages_path>
     </app_config>
     <model_config>
-        <MODEL_PATH>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-12B-it-qat-GGUF\gemma-3-12B-it-QAT-Q4_0.gguf</MODEL_PATH>
-        <USE_CUDA>False</USE_CUDA>
-        <ENABLE_MODEL>True</ENABLE_MODEL>
-        <MAX_TOKENS>512</MAX_TOKENS>
-        <MAX_FILE_CHARS>3000</MAX_FILE_CHARS>
+        <model_path>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-12B-it-qat-GGUF\gemma-3-12B-it-QAT-Q4_0.gguf</model_path>
+        <use_cuda>False</use_cuda>
+        <enable_model>True</enable_model>
+        <max_tokens>512</max_tokens>
+        <max_file_charts>3000</max_file_charts>
     </model_config>
 </app>

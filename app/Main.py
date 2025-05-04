@@ -7,8 +7,8 @@ from core.Model_interface import ModelInterface
 def main():
     print("🟢 Iniciando aplicación..")
 
-    config = Config()
-    model = ModelInterface(config.model_config)
+    c = Config()
+    model = ModelInterface(c.model_config)
     file_manager = FileManager()
     parser = CommandParser(file_manager, config.prompt_config, config.constants)
 

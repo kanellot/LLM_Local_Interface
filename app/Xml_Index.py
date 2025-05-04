@@ -7,11 +7,11 @@ class XMLIndexConstants:
     }
 
     model_conf_keys = {
-        "MODEL_PATH": "MODEL_PATH",
-        "USE_CUDA": "USE_CUDA",
-        "ENABLE_MODEL": "ENABLE_MODEL",
-        "MAX_TOKENS": "MAX_TOKENS",
-        "MAX_FILE_CHARS": "MAX_FILE_CHARS"
+        "MODEL_PATH": "model_path",
+        "USE_CUDA": "use_cuda",
+        "ENABLE_MODEL": "enable_model",
+        "MAX_TOKENS": "max_tokens",
+        "MAX_FILE_CHARS": "max_file_chars"
     }
 
     prompt_conf_keys = {
