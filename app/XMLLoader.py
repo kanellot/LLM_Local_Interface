@@ -1,90 +1,81 @@
 import os
 import xml.etree.ElementTree as ET
 from app.ErrorHandler import ErrorHandler
-from app.Xml_Index_Constants import XMLIndexConstants
 
 
 class XMLLoader:
-    def __init__(self, lang: str):
+    def __init__(self):
+        pass
 
-        self.lang = lang
-        self.c = XMLIndexConstants()
-
-    def load_app_config(self, config_xml_path: str) -> tuple[dict, dict]:
-
+    def load_config(self, path_archivo: str, nombre_config: str) -> dict:
         try:
-            full_path = self._resolve_path(config_xml_path)
+            full_path = self._resolve_path(path_archivo)
             tree = ET.parse(full_path)
             root = tree.getroot()
 
-            app_config = root.find("app")
-            app_config_dict = {
-                self.c.LANGUAGE: self._get_text(app_config, self.c.LANGUAGE),
-                self.c.PROMPT_CONFIG_PATH: self._get_text(app_config, self.c.PROMPT_CONFIG_PATH),
-            } if app_config is not None else {}
+            group_node = None
+            for child in root:
+                if child.tag == nombre_config:
+                    group_node = child
+                    break
 
-            model_config = root.find("model")
-            model_config_dict = {
-                field: self._get_text(model_config, field)
-                for field in self.c.MODEL_STR
-                if model_config is not None and model_config.find(field) is not None
-            }
+            if group_node is None:
+                raise ValueError(f"No se encontró ninguna configuración con nombre '{nombre_config}'.")
 
-            print("✅ App Configuration Load Successful")
-            return app_config_dict, model_config_dict
+            config = self._parse_recursive(group_node)
+            print("✅ Configuración cargada correctamente.")
+            return config
 
         except Exception as e:
             raise RuntimeError(ErrorHandler.format("CONFIG_LOAD_ERROR", error=str(e)))
 
-    def load_prompt_config(self, prompt_xml_path: str, lang: str) -> dict:
-
+    def load_config_lang(self, path_archivo: str, lang: str) -> dict:
+        """
+        Carga un archivo XML filtrando los nodos que tienen subetiquetas por idioma (es/en).
+        """
         try:
             if lang not in {"es", "en"}:
                 raise ValueError(f"Idioma no soportado: '{lang}'. Usa 'es' o 'en'.")
 
-            full_path = self._resolve_path(prompt_xml_path)
+            full_path = self._resolve_path(path_archivo)
             tree = ET.parse(full_path)
             root = tree.getroot()
 
-            prompt_config_dict = {
-                field: self._get_lang_node_text(root.find(field), lang, field)
-                for field in self.c.PROMPT_STR
-            }
+            group_node = None
+            for child in root:
+                #if child.tag == nombre_config:
+                group_node = child
+                break
 
-            print(f"✅ Prompt Configuration Load Successful for language: '{lang}'")
-            return prompt_config_dict
+            if group_node is None:
+                raise ValueError(f"No se encontró ninguna configuración con nombre ''.")
+
+            config = self._parse_recursive(root, lang=lang)
+            print(f"✅ Configuración cargada correctamente para idioma: '{lang}'")
+            return config
 
         except Exception as e:
             raise RuntimeError(ErrorHandler.format("CONFIG_LOAD_ERROR", error=str(e)))
 
-    def _get_text(self, node: ET.Element, tag: str) -> str:
+    def _parse_recursive(self, node: ET.Element, lang: str = None) -> dict:
+        """
+        Recorrido recursivo de un nodo XML, extrae texto según idioma si es necesario.
+        """
+        config = {}
+        for child in node:
+            tag = child.tag
 
-        if node is not None:
-            tag_node = node.find(tag)
-            if tag_node is not None and tag_node.text:
-                return tag_node.text.strip()
-        return ""
+            if lang and child.find(lang) is not None:
+                config[tag] = child.find(lang).text.strip()
+            elif lang:
+                config[tag] = f"⚠️ '{tag}' no definido para idioma '{lang}'"
+            elif len(child) == 0:
+                config[tag] = child.text.strip() if child.text else ""
+            else:
+                config[tag] = self._parse_recursive(child, lang=lang)
 
-    def _get_lang_node_text(self, field_node: ET.Element, lang: str, field_name: str) -> str:
-
-        if field_node is not None:
-            lang_node = field_node.find(lang)
-            if lang_node is not None and lang_node.text:
-                return lang_node.text.strip()
-            return f"⚠️ '{field_name}' no definido para idioma '{lang}'"
-        return f"⚠️ '{field_name}' no encontrado en configuración"
+        return config
 
     def _resolve_path(self, relative_path: str) -> str:
-
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(base_dir, relative_path)
-
-    @classmethod
-    def for_app_config(cls):
-
-        return cls(lang="es")
-
-    @classmethod
-    def for_prompt_config(cls, lang: str):
-
-        return cls(lang=lang)

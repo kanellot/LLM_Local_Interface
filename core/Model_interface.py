@@ -7,11 +7,11 @@ from app.Xml_Index_Constants import XMLIndexConstants
 
 class ModelInterface:
 
-    def __init__(self, model_config: dict, constants: XMLIndexConstants):
+    def __init__(self, model_config: []):
 
         self.model = None
-        self.model_config = model_config
-        self.constants = constants
+        self.model_config = model_config[0]
+        self.constants = model_config[1]
 
         if self.model_config.get(self.constants.ENABLE_MODEL):
             self.model = self.load_model()
