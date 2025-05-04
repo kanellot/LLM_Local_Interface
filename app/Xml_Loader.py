@@ -50,7 +50,7 @@ class XMLLoader:
             if group_node is None:
                 raise ValueError(f"No se encontró ninguna configuración con nombre ''.")
 
-            config = self._parse_recursive(root, lang=lang)
+            config = self._parse_recursive(root, lang)
             print(f"✅ Configuración cargada correctamente para idioma: '{lang}'")
             return config
 

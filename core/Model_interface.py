@@ -2,7 +2,7 @@ import os
 
 from llama_cpp import Llama
 
-from app.Xml_Index_Constants import XMLIndexConstants
+from app.Xml_Index import XMLIndexConstants
 
 
 class ModelInterface:

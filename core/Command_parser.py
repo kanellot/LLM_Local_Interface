@@ -1,6 +1,6 @@
 import re
 
-from app.Xml_Index_Constants import XMLIndexConstants
+from app.Xml_Index import XMLIndexConstants
 from core.File_manager import FileManager
 
 

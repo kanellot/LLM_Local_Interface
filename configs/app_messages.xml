@@ -1,0 +1,26 @@
+<messages>
+    <APP_START>
+        <es>🟢 Iniciando aplicación..</es>
+        <en>🟢 Starting the application..</en>
+    </APP_START>
+    <CONFIG_NAME_ERROR>
+        <es>No se encontró ninguna configuración con nombre</es>
+        <en>No configuration found with the specified name</en>
+    </CONFIG_NAME_ERROR>
+    <CONFIG_LOAD_ERROR>
+        <es>Error al cargar la configuración</es>
+        <en>Error loading configuration</en>
+    </CONFIG_LOAD_ERROR>
+    <CONFIG_LOAD_PASS>
+        <es>✅ Configuración cargada correctamente.</es>
+        <en>✅ Configuration loaded successfully.</en>
+    </CONFIG_LOAD_PASS>
+    <CONFIG_LOAD_LANG_ERROR>
+        <es>Error al cargar la configuración para idioma: </es>
+        <en>Error loading configuration for language: </en>
+    </CONFIG_LOAD_LANG_ERROR>
+    <CONFIG_LOAD_LANG_PASS>
+        <es>✅ Configuración cargada correctamente para idioma: </es>
+        <en>✅ Configuration loaded successfully for language: </en>
+    </CONFIG_LOAD_LANG_PASS>
+</messages>

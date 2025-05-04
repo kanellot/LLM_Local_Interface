@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <app>
     <app_config>
-        <language>en</language>
+        <language>es</language>
         <prompt_config_path>configs\prompt_config01.xml</prompt_config_path>
+        <app_messages_path>configs\app_messages.xml</app_messages_path>
     </app_config>
     <model_config>
         <MODEL_PATH>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-12B-it-qat-GGUF\gemma-3-12B-it-QAT-Q4_0.gguf</MODEL_PATH>
