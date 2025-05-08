@@ -12,6 +12,6 @@
         <max_tokens>512</max_tokens>
         <max_file_charts>3000</max_file_charts>
         <use_cuda>on</use_cuda>
-        <n_gpu_layers>42</n_gpu_layers>
+        <n_gpu_layers>32</n_gpu_layers>
     </model_config>
 </app>

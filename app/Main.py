@@ -9,6 +9,12 @@ def main():
     print("🟢 Iniciando aplicación..")
 
     conf = Config()
+    conf.load_app_config()
+    conf.load_model_config()
+    lang = conf.app_config["app_config"][conf.app_config["idx"]["LANGUAGE"]]
+    conf.load_app_messages(lang)
+    conf.load_prompt_config(lang)
+
     mm = MessageManager(conf.app_info_msg, conf.app_error_msg)
     model = ModelInterface(conf.model_config, mm)
     file_manager = FileManager(mm)

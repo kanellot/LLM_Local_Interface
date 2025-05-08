@@ -16,13 +16,13 @@ class XMLLoader:
             # --- Node search ---
             if (root.tag == config_name): node = root
             else: node = root.find(config_name)
-            if node is None: raise ValueError(f"No se encontró ninguna configuración con nombre ''.")
+            if node is None: raise ValueError(f"\nConfig name: ("+config_name+") not found")
 
             # --- Node parse ---
             config = self._parse_recursive(node, lang)
 
         except Exception as e:
-            raise RuntimeError("CONFIG_LOAD_ERROR")
+            raise RuntimeError("Config load error: "+config_name + str(e))
 
         return config
 
@@ -37,7 +37,7 @@ class XMLLoader:
                 # avoid failure on an empty field on the xml configfiles
                 config[tag] = lang_txt.text.strip() if lang_txt is not None and lang_txt.text else ""
             elif lang:
-                config[tag] = f"⚠️ '{tag}' no definido para idioma '{lang}'"
+                config[tag] = f"⚠️ '{tag}' cot defined for language: '{lang}'"
             elif len(child) == 0:
                 config[tag] = child.text.strip() if child.text else ""
             else:
