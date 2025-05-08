@@ -30,8 +30,12 @@ class XMLLoader:
         config = {}
         for child in node:
             tag = child.tag
-            if lang and child.find(lang) is not None:
-                config[tag] = child.find(lang).text.strip()
+            lang_txt = child.find(lang)
+
+            if lang and lang_txt is not None:
+                # If node exists and lang node exists else return empty string,
+                # avoid failure on an empty field on the xml configfiles
+                config[tag] = lang_txt.text.strip() if lang_txt is not None and lang_txt.text else ""
             elif lang:
                 config[tag] = f"⚠️ '{tag}' no definido para idioma '{lang}'"
             elif len(child) == 0:

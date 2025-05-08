@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompt_config>
+    <rules>
+        <es></es>
+        <en></en>
+    </rules>
+    <pre_prompt>
+        <es></es>
+        <en></en>
+    </pre_prompt>
+    <leer_pre_prompt>
+        <es></es>
+        <en></en>
+    </leer_pre_prompt>
+    <leer_post_prompt>
+        <es></es>
+        <en></en>
+    </leer_post_prompt>
+</prompt_config>

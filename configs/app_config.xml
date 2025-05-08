@@ -2,14 +2,16 @@
 <app>
     <app_config>
         <language>en</language>
-        <prompt_config_path>configs\prompt_config01.xml</prompt_config_path>
+        <prompt_config_path>configs\prompt_config_empty.xml</prompt_config_path>
         <app_messages_path>configs\app_messages.xml</app_messages_path>
     </app_config>
     <model_config>
         <model_path>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-12B-it-qat-GGUF\gemma-3-12B-it-QAT-Q4_0.gguf</model_path>
-        <use_cuda>False</use_cuda>
+        <console_dbg>off</console_dbg>
         <enable_model>True</enable_model>
         <max_tokens>512</max_tokens>
         <max_file_charts>3000</max_file_charts>
+        <use_cuda>on</use_cuda>
+        <n_gpu_layers>42</n_gpu_layers>
     </model_config>
 </app>

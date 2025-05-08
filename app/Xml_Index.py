@@ -8,10 +8,12 @@ class XMLIndexConstants:
 
     model_conf_keys = {
         "MODEL_PATH": "model_path",
-        "USE_CUDA": "use_cuda",
+        "CONSOLE_DBG": "console_dbg",
         "ENABLE_MODEL": "enable_model",
         "MAX_TOKENS": "max_tokens",
-        "MAX_FILE_CHARS": "max_file_chars"
+        "MAX_FILE_CHARS": "max_file_chars",
+        "USE_CUDA": "use_cuda",
+        "N_GPU_LAYERS": "n_gpu_layers",
     }
 
     prompt_conf_keys = {
