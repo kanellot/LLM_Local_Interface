@@ -76,7 +76,7 @@ During execution, the script will ask if want to install with CUDA support
 - Hardware GPU CUDA compatible, (RTX...etc)
 - CUDA Toolkit: Version 12.8 recommended 
 - C++17-Compatible Compiler: Install Visual Studio with the "Desktop development with C++" workload
-- 
+
 Or use any other compiler that supports C++17
 
 ### Add CUDA to System PATH:
