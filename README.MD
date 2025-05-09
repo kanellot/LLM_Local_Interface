@@ -1,127 +1,93 @@
 # 🧠 Local LLM CLI with File Commands
 
-Este proyecto proporciona una interfaz de línea de comandos minimalista para interactuar con un modelo LLM (Large Language Model) local utilizando el backend de [llama.cpp](https://github.com/ggerganov/llama.cpp) a través del paquete `llama-cpp-python`. Puedes ejecutar prompts localmente, insertar contenido de archivos en los prompts e interactuar con el sistema de archivos usando comandos simples.
+This project provides a minimalist command-line interface to interact with a local LLM (Large Language Model) using the [llama.cpp](https://github.com/ggerganov/llama.cpp) backend via the `llama-cpp-python` package. You can run prompts locally, inject file contents into prompts, and interact with the file system using simple commands.
 
 ---
 
-## 📦 Características
+## 📦 Features
 
-- ✅ Inferencia local usando modelos GGUF (como Mistral, LLaMA 3)
-- 📂 Inyección de comandos: lee archivos y lista carpetas desde tu prompt
-- 🧱 Arquitectura modular: preparada para expansión futura con GUI (por ejemplo, PyQt)
-- 🛠️ Fácil de personalizar o extender (agregar más comandos o modelos)
-
----
-
-## 🧰 Estructura del Proyecto
-
-```
-your_project/
-│
-├── app/
-│   ├── main.py           # Punto de entrada de la aplicación
-│   └── config.py         # Parámetros de configuración
-│
-├── core/
-│   ├── model_interface.py # Carga del modelo e interacción
-│   ├── command_parser.py  # Detección y sustitución de comandos
-│   └── file_manager.py    # Lógica de lectura y listado de archivos
-│
-└── README.md
-```
+- ✅ Local inference using GGUF models (e.g., Mistral, LLaMA 3)
+- 📂 Command injection: read files and list folders from your prompt
+- 🧱 Modular architecture: ready for future expansion with GUI (e.g., PyQt)
+- 🛠️ Easy to customize or extend (add new commands or models)
 
 ---
 
-## 🖥️ Requisitos
+## 🖥️ Requirements
 
-- Python 3.9 o superior
-- Un modelo GGUF compatible (ver más abajo)
-- Paquete `llama-cpp-python` instalado
-- Opcional: GPU compatible con CUDA (para aceleración)
+- Python 3.9 or higher
+- A compatible GGUF model (see below)
+- Installed `llama-cpp-python` package
+- Optional: CUDA-compatible GPU (for acceleration)
 
 ---
 
-## 🚀 Instalación
+# 🚀 llama-cpp-python Installation Guide
 
-1. **Clona el repositorio**
+1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/your_project.git
-cd your_project
+git clone https://github.com/kanellot/LLM_Local_Interface.git
+cd LLM_Local_Interface
+```
+## Run the installation script
+
+```
+setup_llama_env.bat
 ```
 
-2. **Configura un entorno virtual (recomendado)**
+This script will:
 
-```bash
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
-```
+- Create a new Python virtual environment using venv
+- Activate the virtual environment
+- Install all required dependencies using pip
 
-3. **Instala las dependencias**
+---
 
-```bash
-pip install llama-cpp-python
-```
-
-4. **Descarga un modelo GGUF**
-
-Puedes obtener modelos desde:
+# 📥 Download a GGUF Model
+You can get models from:
 
 - [TheBloke](https://huggingface.co/TheBloke)
 - [LM Studio](https://lmstudio.ai)
 
-Coloca el archivo `.gguf` en un lugar accesible y toma nota de su ruta completa.
+Place the .gguf model file in an accessible location and take note of its full path.
 
-5. **Configura el modelo**
+Set the path on to the app_config.xml
 
-Edita el archivo `app/config.py`:
-
-```python
-MODEL_PATH = r"C:\ruta\a\tu\modelo.gguf"
-USE_CUDA = True           # Cambiar a False si usas CPU
-ENABLE_MODEL = True       # Cambiar a False para depuración sin modelo
-MAX_TOKENS = 512
-MAX_FILE_CHARS = 3000     # Limita el contenido de archivo leído
 ```
+configs/app_config.xml
+```
+
+set the path on the node
+
+```
+<model_path> your model path </model_path>
+```
+
 
 ---
 
-## 🧪 Ejecutar la Aplicación
+## ⚡ CUDA Support (Optional)
 
-Desde el directorio raíz:
+During execution, the script will ask if want to install with CUDA support
 
-```bash
-python app/main.py
+### ✅ CUDA Requirements
+
+- Hardware GPU CUDA compatible, (RTX...etc)
+- CUDA Toolkit: Version 12.8 recommended 
+- C++17-Compatible Compiler: Install Visual Studio with the "Desktop development with C++" workload
+- 
+Or use any other compiler that supports C++17
+
+### Add CUDA to System PATH:
+
+Add the following path to your environment variables:
+
+```
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin
 ```
 
-Verás un mensaje como:
-
-```
-🟢 Iniciando aplicación...
-🟢 <Tú:
-```
-
-Ahora puedes comenzar a escribir tus prompts.
+To add it:
+Open System Properties → Environment Variables Under System variables, find and edit the Path variable
 
 ---
-
-## 💡 Uso de Prompts y Comandos
-
-Puedes insertar comandos especiales dentro de paréntesis `(...)`, y la aplicación los resolverá antes de enviar el prompt al modelo.
-
-### ✅ Comandos Soportados
-
-| Comando         | Descripción                            | Ejemplo                      |
-|----------------|----------------------------------------|------------------------------|
-| `/leer <ruta>` | Lee un archivo de texto                | `( /leer notas.txt )`        |
-| `/listar <dir>`| Lista archivos en un directorio        | `( /listar ./docs )`         |
-
-Puedes combinarlos con texto libre, por ejemplo:
-
-```text
-Por favor resume el siguiente archivo: (/leer intro.txt) y lista los documentos: (/listar ./docs)
-```
-
----
-
-¡Fácil de extender, ideal para proyectos locales con LLM!
