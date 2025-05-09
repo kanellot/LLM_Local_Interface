@@ -1,11 +1,11 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal
 
 :: Solicitar nombre del entorno
 set /p ENABLE_CUDA=¿Deseas soporte CUDA? (s/n):
 
 :: Preguntar por soporte CUDA
-if /I "!ENABLE_CUDA!"=="s" (
+if /I "%ENABLE_CUDA%"=="s" (
     set FORCE_CMAKE=1
     set CMAKE_ARGS=-DLLAMA_CUDA=on
     echo "Soporte CUDA habilitado."
@@ -29,12 +29,10 @@ if errorlevel 1 (
 
 :: Instalar herramientas básicas
 echo Instalando pip, cmake y wheel...
-::python.exe -m pip install --upgrade pip
 pip install --upgrade pip --no-cache-dir --force-reinstall cmake wheel scikit-build-core ninja
 
-
 :: Instalar llama-cpp-python
-pip install llama-cpp-python --no-cache-dir --force-reinstall --verbose
+pip install llama-cpp-python --no-cache-dir --force-reinstall
 
 :: Mostrar resumen
 echo ========================================
