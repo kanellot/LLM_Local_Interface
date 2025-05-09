@@ -1,10 +1,10 @@
 @echo off
 setlocal
 
-:: Solicitar nombre del entorno
+:: Solicitar por soporte CUDA
 set /p ENABLE_CUDA=¿Deseas soporte CUDA? (s/n):
 
-:: Preguntar por soporte CUDA
+:: Inicializa entorno cmake para CUDA
 if /I "%ENABLE_CUDA%"=="s" (
     set FORCE_CMAKE=1
     set CMAKE_ARGS=-DLLAMA_CUDA=on
@@ -20,18 +20,17 @@ if errorlevel 1 (
     echo Error al crear el entorno virtual.
     exit /b 1
 )
-
 call "venv\Scripts\activate.bat"
 if errorlevel 1 (
     echo Error al activar el entorno virtual.
     exit /b 1
 )
 
-:: Instalar herramientas básicas
+:: Instala herramientas
 echo Instalando pip, cmake y wheel...
 pip install --upgrade pip --no-cache-dir --force-reinstall cmake wheel scikit-build-core ninja
 
-:: Instalar llama-cpp-python
+:: Instala llama-cpp-python
 pip install llama-cpp-python --no-cache-dir --force-reinstall
 
 :: Mostrar resumen
