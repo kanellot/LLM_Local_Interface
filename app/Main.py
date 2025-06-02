@@ -1,8 +1,8 @@
 from app.Config import Config
-from app.MessageManager import MessageManager
-from core.Command_parser import CommandParser
-from core.File_manager import FileManager
-from core.Model_interface import ModelInterface
+from app.Modules.MessageManager import MessageManager
+from app.Modules.Command_parser import CommandParser
+from app.Modules.File_manager import FileManager
+from app.Modules.Model_interface import ModelInterface
 
 
 def main():

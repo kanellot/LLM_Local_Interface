@@ -2,16 +2,16 @@
 <app>
     <app_config>
         <language>en</language>
-        <prompt_config_path>configs\prompt_config_empty.xml</prompt_config_path>
-        <app_messages_path>configs\app_messages.xml</app_messages_path>
+        <prompt_config_path>prompt_config_empty.xml</prompt_config_path>
+        <app_messages_path>app_messages.xml</app_messages_path>
     </app_config>
     <model_config>
-        <model_path>C:\Users\kanel\.lmstudio\models\lmstudio-community\gemma-3-12B-it-qat-GGUF\gemma-3-12B-it-QAT-Q4_0.gguf</model_path>
-        <console_dbg>on</console_dbg>
+        <model_path>C:\Users\kanel\.lmstudio\models\hugging-quants\Llama-3.2-3B-Instruct-Q8_0-GGUF\llama-3.2-3b-instruct-q8_0.gguf</model_path>
+        <console_dbg>off</console_dbg>
         <enable_model>True</enable_model>
         <max_tokens>512</max_tokens>
         <max_file_charts>3000</max_file_charts>
         <use_cuda>on</use_cuda>
-        <n_gpu_layers>32</n_gpu_layers>
+        <n_gpu_layers>48</n_gpu_layers>
     </model_config>
 </app>

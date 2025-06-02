@@ -1,10 +1,10 @@
-from app.Xml_Loader import XMLLoader
+from app.Modules.Xml_Loader import XMLLoader
 from app.Xml_Index import *
 
 
 class Config:
     def __init__(self):
-        self.APP_CONFIG_PATH = "configs\\app_config.xml"
+        self.APP_CONFIG_PATH = "app_config.xml"
         self.app_config = {}
         self.app_info_msg = {}
         self.app_error_msg = {}

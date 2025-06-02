@@ -30,7 +30,10 @@ This project provides a minimalist command-line interface to interact with a loc
 git clone https://github.com/kanellot/LLM_Local_Interface.git
 cd LLM_Local_Interface
 ```
-## Run the installation script
+
+2. **Run the installation script**
+
+The script will ask if you want to perform an installation with CUDA support; if we don't meet all the listed requirements, it will not work.
 
 ```
 setup_llama_env.bat
@@ -41,6 +44,14 @@ This script will:
 - Create a new Python virtual environment using venv
 - Activate the virtual environment
 - Install all required dependencies using pip
+
+3. **Select interpreter from venv environment**
+
+Once installed, select the Python interpreter (in your IDE) that is located in the virtual environment that was just created.
+
+```
+venv/Scripts/python.exe
+```
 
 ---
 
@@ -79,7 +90,7 @@ During execution, the script will ask if want to install with CUDA support
 
 Or use any other compiler that supports C++17
 
-### Add CUDA to System PATH:
+### Add Nvidia GPU Toolkit to System PATH:
 
 Add the following path to your environment variables:
 

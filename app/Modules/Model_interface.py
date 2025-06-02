@@ -1,7 +1,7 @@
 import os
 
 from llama_cpp import Llama
-from app.MessageManager import MessageManager
+from app.Modules.MessageManager import MessageManager
 
 class ModelInterface:
 

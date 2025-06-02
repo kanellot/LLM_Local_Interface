@@ -46,5 +46,6 @@ class XMLLoader:
         return config
 
     def _resolve_path(self, relative_path: str) -> str:
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        return os.path.join(base_dir, relative_path)
+        # Subimos dos niveles para llegar al root del proyecto (desde Modules/Xml_Loader.py)
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        return os.path.join(project_root, "configs", relative_path)

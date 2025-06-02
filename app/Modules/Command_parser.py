@@ -1,7 +1,6 @@
 import re
 
-from app.Xml_Index import XMLIndexConstants
-from core.File_manager import FileManager
+from app.Modules.File_manager import FileManager
 
 
 class CommandParser:
